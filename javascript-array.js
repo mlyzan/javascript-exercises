@@ -206,3 +206,74 @@ function shuffle(arr) {
     }
     return arr
 }
+
+// There are two arrays with individual values, write a JavaScript program to compute the sum 
+// of each individual index value from the given arrays. Go to the editor
+// Sample array :
+// array1 = [1,0,2,3,4];
+// array2 = [3,5,6,7,8,13];
+// Expected Output :
+// [4, 5, 8, 10, 12, 13]
+
+function computeSum(first, second) {
+    const longer = first.length >= second.length ? first : second;
+    const shorter = first.length < second.length ? first : second;
+    return longer.reduce((acc, cur, i) => {
+        acc.push(shorter[i] ? cur + shorter[i] : cur);
+        return acc
+    }, [])
+}
+
+// Write a JavaScript program to find duplicate values in a JavaScript array.
+
+// solution 1
+function findDuplicate1(arr) {
+    const obj = arr.reduce((acc, cur) => {
+        acc[cur] = (acc[cur] || 0) + 1;
+        return acc
+    }, {});
+    const result = [];
+    for (let key in obj) {
+        if (obj[key] > 1) {
+            result.push(key)
+        }
+    };
+    return result
+}
+
+// solution 2
+function findDuplicate2(arr) {
+    const result = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (arr.indexOf(arr[i]) !== i && !result.includes(arr[i])) {
+            result.push(arr[i])
+        }
+    }
+    return result
+}
+
+// Write a JavaScript program to flatten a nested (any depth) array. 
+// If you pass shallow, the array will only be flattened a single level. Go to the editor
+// Sample Data :
+// console.log(flatten([1, [2], [3, [[4]]],[5,6]]));
+// [1, 2, 3, 4, 5, 6]
+// console.log(flatten([1, [2], [3, [[4]]],[5,6]], true));
+// [1, 2, 3, [[4]], 5, 6]
+
+// solution 1
+function flatten1(arr, n = Infinity) {
+    return arr.flat(n)
+}
+
+// solution 2
+function flatten2(arr, n = Infinity) {
+    const result = [];
+    for (let el of arr) {
+        if (Array.isArray(el) && n >= 0) {
+            result.push(...flatten2(el,--n))
+        } else {
+            result.push(el)
+        }
+    }
+    return result
+}
