@@ -253,7 +253,7 @@ function findDuplicate2(arr) {
 }
 
 // Write a JavaScript program to flatten a nested (any depth) array. 
-// If you pass shallow, the array will only be flattened a single level. Go to the editor
+// If you pass shallow, the array will only be flattened a single level. 
 // Sample Data :
 // console.log(flatten([1, [2], [3, [[4]]],[5,6]]));
 // [1, 2, 3, 4, 5, 6]
@@ -276,4 +276,19 @@ function flatten2(arr, n = Infinity) {
         }
     }
     return result
+}
+
+// Write a JavaScript program to compute the union of two arrays.
+// Sample Data :
+// console.log(union([1, 2, 3], [100, 2, 1, 10]));
+// [1, 2, 3, 10, 100]
+
+// solution 1
+function union1(arr1, arr2) {
+    return [...arr1, ...arr2]
+}
+
+// solution 2
+function union2(arr1, arr2) {
+    return arr1.concat(arr2)
 }
