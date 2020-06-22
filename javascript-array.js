@@ -149,3 +149,60 @@ function character(str) {
     }
     return newStr
 }
+
+//  Write a JavaScript program to remove duplicate items from an array (ignore case sensitivity).
+
+// solution 1
+function duplicate1(arr) {
+    return [...new Set(arr)]
+}
+
+// solution 2
+function duplicate2(arr) {
+    return arr.filter((e, i) => arr.indexOf(e) === i)
+}
+
+// solution 3
+function duplicate3(arr) {
+    const newArr = [];
+    const obj = {};
+    for (let el of arr) {
+        obj[el] = (obj[el] || 0) + 1;
+    };
+    for (let key in obj) {
+        if (obj[key] === 1) {
+            newArr.push(key)
+        }
+    }
+    return newArr
+}
+
+// Find the leap years in a given range of years
+
+function leapYear(year) {
+    return (year % 4 === 0 && year % 100 !== 0) || (year % 100 === 0 && year % 400 === 0) ? year : false
+}
+
+function yearsRange(start, end) {
+    const arr = [];
+    while (start <= end) {
+        let leap = leapYear(start);
+        if (leap) {
+            arr.push(leap);
+        }
+        start++;
+    }
+    return arr
+}
+
+// Write a JavaScript program to shuffle an array
+
+function shuffle(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        let random = Math.floor(Math.random() * arr.length);
+        if (random !== i) {
+            [arr[i], arr[random]] = [arr[random], arr[i]]
+        }
+    }
+    return arr
+}
