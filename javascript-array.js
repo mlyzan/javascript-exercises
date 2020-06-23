@@ -208,7 +208,7 @@ function shuffle(arr) {
 }
 
 // There are two arrays with individual values, write a JavaScript program to compute the sum 
-// of each individual index value from the given arrays. Go to the editor
+// of each individual index value from the given arrays.
 // Sample array :
 // array1 = [1,0,2,3,4];
 // array2 = [3,5,6,7,8,13];
@@ -291,4 +291,106 @@ function union1(arr1, arr2) {
 // solution 2
 function union2(arr1, arr2) {
     return arr1.concat(arr2)
+}
+
+// solution 3 
+function union3(arr1, arr2) {
+    const result = [];
+    for (let el of arr1) {
+        result.push(el)
+    }
+    for (let el of arr2) {
+        result.push(el)
+    }
+    return result
+}
+
+// Write a JavaScript function to find the difference of two arrays.
+// Test Data :
+// console.log(difference([1, 2, 3], [100, 2, 1, 10]));
+// ["3", "10", "100"]
+// console.log(difference([1, 2, 3, 4, 5], [1, [2], [3, [[4]]],[5,6]]));
+// ["6"]
+// console.log(difference([1, 2, 3], [100, 2, 1, 10]));
+// ["3", "10", "100"]
+
+// solution 1 
+function difference1(arr1, arr2) {
+    const spread1 = arr1.flat(Infinity);
+    const spread2 = arr2.flat(Infinity);
+    const result = [];
+    for (let el of spread1) {
+        if (!spread2.includes(el)) {
+            result.push(el)
+        }
+    }
+    for (let el of spread2) {
+        if (!spread1.includes(el)) {
+            result.push(el)
+        }
+    }
+    return result
+}
+
+// solution 2
+function difference2(arr1, arr2) {
+    return [...arr1.flat(Infinity).filter((e , i) => {
+        return !arr2.flat(Infinity).includes(e)
+    }), ...arr2.flat(Infinity).filter((e , i) => {
+        return !arr1.flat(Infinity).includes(e)
+    })]
+}
+
+// solution 3
+function difference3(arr1, arr2) {
+    const obj = {};
+    for (let el of arr1.flat(Infinity)) {
+        obj[el] = (obj[el] || 0) + 1
+    }    
+    for (let el of arr2.flat(Infinity)) {
+        obj[el] = (obj[el] || 0) + 1
+    }
+
+    return Object.entries(obj).filter(e => {
+        if (e[1] === 1) {
+            return e
+        } 
+    }).map(e => e[0])
+}
+
+// Write a JavaScript function to remove. 'null', '0', '""', 'false', 'undefined' and 'NaN' values from an array.
+// Sample array : [NaN, 0, 15, false, -22, '',undefined, 47, null]
+// Expected result : [15, -22, 47]
+
+function remove(arr) {
+    return arr.filter(e => e)
+}
+
+// Write a JavaScript program to find a pair of elements (indices of the two numbers)
+// from an given array whose sum equals a specific target number. Go to the editor
+// Input: numbers= [10,20,10,40,50,60,70], target=50
+// Output: 2,3
+
+// solution 1 
+function findPair1(arr, target) {
+    let result = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] + arr[i+1] === target) {
+            result.push(i, i+1)
+            break;
+        }
+    }
+    return result.join()
+}
+
+// solution 2
+function findPair2(arr, target) {
+    return [arr.findIndex((e, i) => e + arr[i+1] === target), arr.findIndex((e, i) => e + arr[i-1] === target)].join()
+}
+
+
+// Write a JavaScript function to merge two arrays and removes all duplicates elements.
+
+function mergeWithoutDuplicates(arr1, arr2) {
+    return [... new Set([...arr1, ...arr2])]
 }
