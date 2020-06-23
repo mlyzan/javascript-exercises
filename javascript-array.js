@@ -367,7 +367,7 @@ function remove(arr) {
 }
 
 // Write a JavaScript program to find a pair of elements (indices of the two numbers)
-// from an given array whose sum equals a specific target number. Go to the editor
+// from an given array whose sum equals a specific target number. 
 // Input: numbers= [10,20,10,40,50,60,70], target=50
 // Output: 2,3
 
@@ -393,4 +393,32 @@ function findPair2(arr, target) {
 
 function mergeWithoutDuplicates(arr1, arr2) {
     return [... new Set([...arr1, ...arr2])]
+}
+
+// Write a JavaScript function to remove a specific element from an array. 
+// Test data :
+// console.log(removeArrayElement([2, 5, 9, 6], 5));
+// [2, 9, 6]
+
+function removeArrayElement(arr, element) {
+    return arr.filter(e => e !== element)
+}
+
+// Write a JavaScript function to find an array contains a specific element.
+// Test data :
+// arr = [2, 5, 9, 6];
+// console.log(contains(arr, 5));
+// true
+
+function contains(arr, el) {
+    return arr.includes(el)
+}
+
+// Write a JavaScript function to get nth largest element from an unsorted array. 
+// Test Data :
+// console.log(nthlargest([ 43, 56, 23, 89, 88, 90, 99, 652], 4));
+// 89
+
+function nthlargest(arr, i) {
+    return arr.sort((a, b) => b-a)[i-1]
 }
